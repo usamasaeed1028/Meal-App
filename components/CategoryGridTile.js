@@ -26,13 +26,15 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
     height: 150,
-    borderWidth: 2,
     borderRadius: 8,
     elevation: 4,
     overflow: "hidden",
+    backgroundColor: 'white'
   },
   innerContainer: {
     flex: 1,
+    padding: 16,
+    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -47,3 +49,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+//   gridItem: {
+//     flex: 1,
+//     margin: 16,
+//     height: 150,
+//     borderRadius: 8,
+//     elevation: 4,
+//     backgroundColor: 'white',
+//     shadowColor: 'black',
+//     shadowOpacity: 0.25,
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowRadius: 8,
+//     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',

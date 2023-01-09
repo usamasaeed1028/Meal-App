@@ -1,22 +1,40 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import MealItem from "../components/MealItem";
-import {MEALS} from "../data/dummy-data";
+import { MEALS, CATEGORIES } from "../data/dummy-data";
 
-const MealsOverviewScreen = ({ route }) => {
-    
+const MealsOverviewScreen = ({ route, navigation }) => {
   const catId = route.params.categoryId;
 
-  const displayedMeals = MEALS.filter((mealItem)=> {
+  const categoryTitle = CATEGORIES.find((category) => category.id === catId);
+
+  navigation.setOptions({
+    title: categoryTitle.title,
+  });
+  const displayedMeals = MEALS.filter((mealItem) => {
     return mealItem.categoryIds.indexOf(catId) >= 0;
   });
 
   const renderMealItem = (mealItem) => {
-        return <MealItem title={mealItem.item.title} />
-  }
+    const item = mealItem.item;
+
+    const mealItemProps = {
+      id: item.id,
+      title: item.title,
+      imageUrl: item.imageUrl,
+      duration: item.duration,
+      complexity: item.complexity,
+      affordability: item.affordability,
+    };
+    return <MealItem {...mealItemProps} />;
+  };
 
   return (
     <View style={styles.constainer}>
-        <FlatList  data={displayedMeals} keyExtractor={(item)=> item.id} renderItem={renderMealItem}/>
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item) => item.id}
+        renderItem={renderMealItem}
+      />
     </View>
   );
 };
